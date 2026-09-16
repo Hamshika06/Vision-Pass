@@ -44,24 +44,12 @@ a spreadsheet of every plate it read.
 
 ## Screenshots
 
-> _Add screenshots of the running web app here._
-
 ### Upload and detection
-<!-- ![Upload view](docs/screenshot-upload.png) -->
+<img width="1892" height="853" alt="image" src="https://github.com/user-attachments/assets/39751614-6e37-4af8-a919-51debed6b36d" />
 
-### Access granted
-<!-- ![Access granted](docs/screenshot-granted.png) -->
+### Access output and logs
+<img width="1917" height="700" alt="image" src="https://github.com/user-attachments/assets/4c02b34e-1886-4450-8959-8fe5f024d23f" />
 
-### Access denied
-<!-- ![Access denied](docs/screenshot-denied.png) -->
-
-### Entry log
-<!-- ![Entry log](docs/screenshot-log.png) -->
-
-_To add these: run the app, take screenshots, save them into a `docs/` folder
-with the filenames above, and uncomment the image lines._
-
----
 
 ## Dataset
 
@@ -221,18 +209,6 @@ See [`webapp/README.md`](webapp/README.md) for configuration options.
 Append a row to `LICENSEPLATE_GUESTS_DATABASE.csv` under the `License Plate`
 column. The file is re-read on every request, so no restart is needed.
 
----
-
-## Limitations
-
-- **OCR accuracy drops** on motion-blurred, heavily angled, or poorly lit plates.
-  The confidence scores are surfaced in the UI so a guard can judge for themselves.
-- **CPU inference** takes a few seconds per image. A GPU build of PyTorch would
-  bring this well under a second for real-time gate use.
-- **The register is a flat CSV**, suitable for a demonstration. A production
-  deployment would want a proper database with per-vehicle validity windows,
-  visitor passes, and revocation.
-- **Single class detector** — it finds plates, not vehicle type, colour or make.
 
 ---
 
