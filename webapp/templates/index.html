@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VisionPass</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">VP</span>
+      <div>
+        <h1>VisionPass</h1>
+        <p>Automatic number plate recognition &amp; gate authorization</p>
+      </div>
+    </div>
+    <div class="db-chip" id="dbChip">database: loading&hellip;</div>
+  </header>
+
+  <main>
+    <section class="panel capture">
+      <h2>1 &middot; Capture</h2>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="upload">Upload image</button>
+        <button class="tab" data-tab="camera">Live camera</button>
+      </div>
+
+      <div class="tab-body" id="tab-upload">
+        <label class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <span class="dz-icon">&#128247;</span>
+          <span class="dz-title">Drop a vehicle photo here</span>
+          <span class="dz-sub">or click to browse &middot; JPG / PNG, max 16&nbsp;MB</span>
+        </label>
+        <img id="preview" class="preview hidden" alt="Selected vehicle">
+      </div>
+
+      <div class="tab-body hidden" id="tab-camera">
+        <video id="video" class="preview" autoplay playsinline muted></video>
+        <div class="row">
+          <button class="btn ghost" id="startCam">Start camera</button>
+          <button class="btn ghost" id="snap" disabled>Capture frame</button>
+        </div>
+        <p class="hint" id="camHint"></p>
+      </div>
+
+      <button class="btn primary" id="runBtn" disabled>Check authorization</button>
+      <p class="hint" id="status"></p>
+    </section>
+
+    <section class="panel result">
+      <h2>2 &middot; Decision</h2>
+      <div id="empty" class="empty">
+        <p>No plate checked yet.</p>
+        <p class="hint">YOLOv11 locates the plate, EasyOCR reads it, and the text is matched
+          against the guest database.</p>
+      </div>
+      <div id="resultBody" class="hidden">
+        <img id="annotated" class="preview" alt="Detection result">
+        <div id="cards"></div>
+      </div>
+    </section>
+
+    <section class="panel log">
+      <h2>Entry log</h2>
+      <table id="logTable">
+        <thead>
+          <tr><th>Time</th><th>Plate</th><th>Decision</th><th>Matched</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p class="hint" id="logHint">No entries recorded yet.</p>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

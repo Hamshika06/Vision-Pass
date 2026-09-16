@@ -1,0 +1,6 @@
+flask
+pandas
+openpyxl
+opencv-python-headless
+ultralytics
+easyocr
